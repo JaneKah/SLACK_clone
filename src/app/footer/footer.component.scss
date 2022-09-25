@@ -1,0 +1,25 @@
+.footer {
+    background-color: rgb(88, 21, 118);
+    color: white;
+    padding: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    a {
+        text-decoration: none;
+        color: white;
+        font-weight: bold;
+    }
+}
+
+img {
+    cursor: pointer;
+}
+
+.footer-right {
+    a {
+        margin-right: 8px;
+        margin-left: 8px;
+    }
+}

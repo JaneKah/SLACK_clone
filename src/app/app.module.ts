@@ -27,7 +27,9 @@ import { ChannelsComponent } from './channels/channels.component';
 import { ThreadsComponent } from './threads/threads.component';
 import { DirectMessagesComponent } from './direct-messages/direct-messages.component';
 import { InputboxComponent } from './inputbox/inputbox.component';
-
+import { FooterComponent } from './footer/footer.component';
+import { DataProtectionComponent } from './data-protection/data-protection.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { InputboxComponent } from './inputbox/inputbox.component';
     ChannelsComponent,
     ThreadsComponent,
     DirectMessagesComponent,
-    InputboxComponent
+    InputboxComponent,
+    FooterComponent,
+    DataProtectionComponent
   ],
   imports: [
     BrowserModule,
@@ -57,6 +61,7 @@ import { InputboxComponent } from './inputbox/inputbox.component';
     MatCardModule,
     MatMenuModule,
     FormsModule,
+    MatExpansionModule
    ],
   providers: [
     ScreenTrackingService, UserTrackingService

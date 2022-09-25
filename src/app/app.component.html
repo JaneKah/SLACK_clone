@@ -7,26 +7,33 @@
       <li routerLink="/" routerLinkActive="router-link-active">
         <mat-icon>fact_check</mat-icon>Threads
       </li>
-      <li routerLink="/channels" routerLinkActive="router-link-active">
-        <mat-icon>account_tree</mat-icon>Channels
-      </li>
-      
-      <li class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active">
-        <div><mat-icon>perm_identity</mat-icon>Direct messages</div>
-        <br><br><br>
-        <ul>John</ul>
-        <ul>Maria</ul>
-      </li>
+      <mat-expansion-panel routerLink="/channels" routerLinkActive="router-link-active" (opened)="panelOpenState = true"
+        (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+             Channels <div class="icon-add"><mat-icon>add</mat-icon></div>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+      </mat-expansion-panel>
 
+      <mat-expansion-panel class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active"
+        (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <mat-icon>perm_identity</mat-icon> Direct messages
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p>John</p>
+        <p>Maria</p>
+      </mat-expansion-panel>
     </ul>
-
   </mat-drawer>
 
-  <div class="example-sidenav-content">
+  <div>
     <mat-toolbar color="primary">
       <mat-toolbar-row>
         <mat-icon class="menu-icon" (click)="drawer.toggle()">menu</mat-icon>
-        <span>Simple CRM</span>
+        <span>SLACK</span>
       </mat-toolbar-row>
     </mat-toolbar>
 
@@ -38,3 +45,4 @@
   </div>
 
 </mat-drawer-container>
+<app-footer></app-footer>

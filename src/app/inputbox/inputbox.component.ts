@@ -12,4 +12,8 @@ export class InputboxComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  send() {
+
+  }
+
 }
