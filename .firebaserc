@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "jk-slack": {
+      "hosting": {
+        "SLACK": [
+          "jk-slack"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "jk-slack"
+  }
+}

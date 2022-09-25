@@ -1,0 +1,22 @@
+.msg-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.avatar {
+    margin-right: 16px;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+    }
+}
+
+.msg-container {
+    position: relative;
+}
+
