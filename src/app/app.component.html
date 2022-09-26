@@ -7,14 +7,22 @@
       <li routerLink="/" routerLinkActive="router-link-active">
         <mat-icon>fact_check</mat-icon>Threads
       </li>
-      <mat-expansion-panel routerLink="/channels" routerLinkActive="router-link-active" (opened)="panelOpenState = true"
-        (closed)="panelOpenState = false">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-             Channels <div class="icon-add"><mat-icon>add</mat-icon></div>
-          </mat-panel-title>
-        </mat-expansion-panel-header>
-      </mat-expansion-panel>
+  
+      <mat-nav-list>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            Channels
+            <div (click)="openAddChannelDialog()" class="icon-add">
+              <mat-icon>add</mat-icon>
+            </div>
+          </mat-expansion-panel-header>
+          <div *ngFor="let channel of channels" [routerLink]="['/channels/' + channel.channelName]"
+            routerLinkActive="router-link-active">
+            <a mat-list-item routerLink>{{ channel.channelName }}</a>
+          </div>
+        </mat-expansion-panel>
+      </mat-nav-list>
+
 
       <mat-expansion-panel class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active"
         (opened)="panelOpenState = true" (closed)="panelOpenState = false">

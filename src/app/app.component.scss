@@ -78,6 +78,10 @@
     }
 }
 
+td {
+    cursor: pointer;
+}
+
 .icon-add {
     &:hover  {
         background-color: lightgray;

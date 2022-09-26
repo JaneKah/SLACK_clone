@@ -7,7 +7,9 @@ import { ThreadsComponent } from './threads/threads.component';
 const routes: Routes = [
   {path: '', component: ThreadsComponent},
   {path: 'channels', component: ChannelsComponent},
+  {path: 'channels/:id', component: ChannelsComponent},
   {path: 'direct-messages', component: DirectMessagesComponent}
+ 
 ];
 
 @NgModule({

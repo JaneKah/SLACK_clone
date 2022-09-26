@@ -30,6 +30,19 @@ import { InputboxComponent } from './inputbox/inputbox.component';
 import { FooterComponent } from './footer/footer.component';
 import { DataProtectionComponent } from './data-protection/data-protection.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
+import {MatListModule} from '@angular/material/list';
+
+
+import { AngularFirestore, AngularFirestoreModule } from '@angular/fire/compat/firestore';
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire/compat';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
+import { provideAuth, getAuth } from '@angular/fire/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage';
+
+
 
 @NgModule({
   declarations: [
@@ -39,7 +52,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
     DirectMessagesComponent,
     InputboxComponent,
     FooterComponent,
-    DataProtectionComponent
+    DataProtectionComponent,
+    DialogAddChannelComponent
   ],
   imports: [
     BrowserModule,
@@ -61,10 +75,15 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatCardModule,
     MatMenuModule,
     FormsModule,
-    MatExpansionModule
+    MatExpansionModule,
+    AngularFirestoreModule,
+    AngularFireAuthModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    MatListModule
    ],
   providers: [
-    ScreenTrackingService, UserTrackingService
+    ScreenTrackingService, UserTrackingService,
+    AngularFirestore,
   ],
   bootstrap: [AppComponent]
 })
