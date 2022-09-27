@@ -11,14 +11,22 @@ import { Channelmessage } from 'src/models/channelmessage.class';
 })
 
 export class ChannelsComponent implements OnInit {
+  channelID = '';
   public channels: Channel[] = [];
   public channelMessages: Channelmessage[]  = [];
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
-    this.getChannelMessages();
-  }
+    this.route.paramMap.subscribe(paramMap => {
+      let id = paramMap.get('id');
+      if (id !== null) {
+      this.channelID = id;
+      console.log('GOT ID:', this.channelID)
+      };
+    this.getChannelMessages(); 
+  });
+}
 
   public getChannelMessages() {
     this.firestore
@@ -29,3 +37,17 @@ export class ChannelsComponent implements OnInit {
       });
   }
 }
+
+/*
+ngOnInit(): void {
+  this.route.paramMap.subscribe(paramMap => {
+    let id = paramMap.get('id');
+    if (id !== null) {
+    this.channelID = id;
+    console.log('GOT ID:', this.channelID)
+
+  });
+  this.getChannelMessages(); 
+
+}
+}*/

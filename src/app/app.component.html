@@ -16,7 +16,7 @@
               <mat-icon>add</mat-icon>
             </div>
           </mat-expansion-panel-header>
-          <div *ngFor="let channel of channels" [routerLink]="['/channels/' + channel.channelName + '-' + channel.customIdName]"
+          <div *ngFor="let channel of channels" [routerLink]="['/channels/' + channel.customIdName]"
             routerLinkActive="router-link-active">
             <a mat-list-item routerLink>{{ channel.channelName }}</a>
           </div>
