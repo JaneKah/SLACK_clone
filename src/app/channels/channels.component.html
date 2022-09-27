@@ -1,11 +1,14 @@
+<header *ngFor="let channel of channels"> {{ channel.channelName }} </header>
 <div class="main-container">
-    <div class="msg-container">
-        <div class="avatar">
-            <img src="/assets/img/panda.png" alt="">
+    <div class="msg-main-container">
+        <div class="msg-container" *ngFor="let channelMessage of channelMessages">
+            <div class="avatar">
+                <img src="/assets/img/panda.png" alt="">
+            </div>
+            <div class="message">
+                {{ channelMessage.message }}
+            </div>
         </div>
-        <div class="message">
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Neque ipsa vng s
-        </div>
-    </div> 
+    </div>
     <app-inputbox></app-inputbox>
 </div>

@@ -18,5 +18,19 @@
 
 .msg-container {
     position: relative;
+    margin-bottom: 32px;
 }
+
+header {
+    height: 40px;
+}
+
+
+.msg-main-container {
+    overflow-y: scroll;
+    max-height: 60vh;
+    border-top: 1px solid black;
+}
+
+
 

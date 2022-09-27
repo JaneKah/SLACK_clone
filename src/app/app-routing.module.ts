@@ -9,7 +9,6 @@ const routes: Routes = [
   {path: 'channels', component: ChannelsComponent},
   {path: 'channels/:id', component: ChannelsComponent},
   {path: 'direct-messages', component: DirectMessagesComponent}
- 
 ];
 
 @NgModule({

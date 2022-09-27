@@ -1,9 +1,14 @@
 <form action="" class="inputbox">
     <mat-form-field class="full-width" appearance="fill">
         <mat-label>Write a message...</mat-label>
-        <textarea matInput placeholder="Write a message..."></textarea>
+        <textarea id="input" #input name="channelMessage" [(ngModel)]="channelMessage.message" matInput
+            placeholder="Write a message..."></textarea>
     </mat-form-field>
     <footer>
-        <mat-icon matSuffix (click)="send()">send</mat-icon>
+        <div (click)="send()">
+            <mat-icon matSuffix>send</mat-icon>
+        </div>
+        <button mat-button
+        cdkFocusInitial (click)="send()">Ok</button>
     </footer>
 </form>
