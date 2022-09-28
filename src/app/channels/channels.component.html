@@ -1,6 +1,6 @@
 <header> {{ channel.channelName }} </header>
 <div class="main-container">
-    <ng-container  *ngIf="channelMessage.channelID == channel.channelID">
+    <ng-container>
         <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
             <div class="msg-container">
                 <div class="avatar">

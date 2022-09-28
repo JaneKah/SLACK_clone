@@ -6,7 +6,6 @@ import { Channelmessage } from 'src/models/channelmessage.class';
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 
-
 @Component({
   selector: 'app-channels',
   templateUrl: './channels.component.html',
@@ -20,6 +19,8 @@ export class ChannelsComponent implements OnInit {
   public channelMessages: Channelmessage[] = [];
   db = getFirestore();
   docRef = doc(collection(this.db, "channels"));
+  date: Date | undefined;
+  id : string | null = '';
 
   constructor(private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
@@ -27,11 +28,12 @@ export class ChannelsComponent implements OnInit {
     this.route.paramMap.subscribe(paramMap => {
       let id = paramMap.get('id');
       if (id !== null) {
-      this.channelId = id;
-      console.log('GOT ID:', this.channelId)
+        this.channelId = id;
+        console.log('GOT ID:', this.channelId)
       };
-    this.getChannelName(); 
     this.getChannelMessages();
+    this.getChannelName(); 
+    this.getMessageTime();
   });
 }
 
@@ -50,12 +52,18 @@ export class ChannelsComponent implements OnInit {
   public getChannelMessages() {
     if (this.channelId) {
     this.firestore
-      .collection("channelmessages")
+      .collection("channelmessages", ref => ref
+        .where('channelID', '==', this.channelId)
+      )
       .valueChanges( {idField: 'channelID'} )
       .subscribe((changes: any) => {
         this.channelMessages = changes;
       });
   }
+}
+
+getMessageTime() {
+  this.date = new Date(this.channelMessage.timestamp);
 }
 }
 
