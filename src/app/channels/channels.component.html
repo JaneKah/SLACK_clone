@@ -1,15 +1,16 @@
-<header *ngFor="let channel of channels"> {{ channel.channelName }} </header>
+<header> {{ channel.channelName }} </header>
 <div class="main-container">
-    <div class="msg-main-container">
-        <div class="msg-container" *ngFor="let channelMessage of channelMessages">
-            <div class="avatar">
-                <img src="/assets/img/panda.png" alt="">
+    <ng-container  *ngIf="channelMessage.channelID == channel.channelID">
+        <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
+            <div class="msg-container">
+                <div class="avatar">
+                    <img src="/assets/img/panda.png" alt="">
+                </div>
+                <div class="message">
+                    {{ channelMessage.message }}
+                </div>
             </div>
-            <div class="message">
-                {{ channelMessage.message }}
-
-   </div>
         </div>
-    </div>
-    <app-inputbox></app-inputbox>
+    </ng-container>
+        <app-inputbox></app-inputbox>
 </div>

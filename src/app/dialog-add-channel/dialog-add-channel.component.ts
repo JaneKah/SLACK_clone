@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Channel } from 'src/models/channel.class';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-dialog-add-channel',
@@ -11,10 +13,13 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 export class DialogAddChannelComponent implements OnInit {
   channel = new Channel();
   channelName: string = '';
+  db = getFirestore();
+  docRef = doc(collection(this.db, "channels"));
   
-  constructor(public dialogRef: MatDialogRef<DialogAddChannelComponent>, private firestore: AngularFirestore) { }
+  constructor(private database: AngularFireDatabase, public dialogRef: MatDialogRef<DialogAddChannelComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
+ 
   }
 
   addChannel() {

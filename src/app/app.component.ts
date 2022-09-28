@@ -5,7 +5,8 @@ import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-chann
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { SidebarService } from './services/sidebar.service';
-
+import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-root',
@@ -14,13 +15,18 @@ import { SidebarService } from './services/sidebar.service';
 })
 export class AppComponent implements OnInit {
   panelOpenState = false;
+  channel: Channel = new Channel();
+  channelId = '';
   public channels: Channel[] = [];
   title = "SLACK"
+  db = getFirestore();
+  docRef = doc(collection(this.db, "channels"));
 
   constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog, public sidebarService: SidebarService) { }
 
   ngOnInit(): void {
     this.getChannels();
+    this.setChannelDoc();
   }
 
   public getChannels() {
@@ -30,6 +36,17 @@ export class AppComponent implements OnInit {
       .subscribe((changes: any) => {
         this.channels = changes;
       });
+  }
+
+  setChannelDoc() {
+    this.route.paramMap.subscribe(paramMap => {
+      let id = paramMap.get('id');
+      if (id !== null) {
+      this.channelId = id;
+      console.log('GOT ID:', this.channelId)
+      };
+      this.channel.channelID = this.channelId;
+  });
   }
 
   openAddChannelDialog(): void {

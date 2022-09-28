@@ -2,7 +2,7 @@ export class Channelmessage {
   message: string;
   timestamp: number;
   userId: string; // is the firebase document ID from the user who sent the message, for example user 3C651LYhk1HaB8Y0Vsbf
-  channelID: string; // is the firebase document ID from the channel, in which message was posted, for example channel 8liMczKcm1Paer7sJbAX
+  channelID?: string; // is the firebase document ID from the channel, in which message was posted, for example channel 8liMczKcm1Paer7sJbAX
   customIdName?: string;
   textStyle: "normal" | "italic" | "bold" | "linethrough" | "code" = 'normal';
   imageUrl?: string;
