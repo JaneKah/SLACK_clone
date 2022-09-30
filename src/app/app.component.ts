@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SidebarService } from './services/sidebar.service';
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { AuthService } from './shared/services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ export class AppComponent implements OnInit {
   db = getFirestore();
   docRef = doc(collection(this.db, "channels"));
 
-  constructor(private route: ActivatedRoute, private firestore: AngularFirestore, public dialog: MatDialog, public sidebarService: SidebarService) { }
+  constructor(private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore, public dialog: MatDialog, public sidebarService: SidebarService) { }
 
   ngOnInit(): void {
     this.getChannels();
