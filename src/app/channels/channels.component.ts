@@ -5,6 +5,9 @@ import { Channel } from 'src/models/channel.class';
 import { Channelmessage } from 'src/models/channelmessage.class';
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
+import { User } from '../shared/services/user';
+import { AuthService } from '../shared/services/auth.service';
+
 
 @Component({
   selector: 'app-channels',
@@ -14,15 +17,16 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 export class ChannelsComponent implements OnInit {
   channelId = '';
+  public users: User[] = [];
   channel: Channel = new Channel();
   channelMessage: Channelmessage = new Channelmessage();
   public channelMessages: Channelmessage[] = [];
-  db = getFirestore();
-  docRef = doc(collection(this.db, "channels"));
+  // db = getFirestore();
+  //docRef = doc(collection(this.db, "channels"));
   date: Date | undefined;
   id : string | null = '';
 
-  constructor(private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -31,6 +35,7 @@ export class ChannelsComponent implements OnInit {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
+      
     this.getChannelMessages();
     this.getChannelName(); 
     this.getMessageTime();

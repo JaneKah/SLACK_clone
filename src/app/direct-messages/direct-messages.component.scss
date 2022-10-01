@@ -1,0 +1,41 @@
+.msg-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.avatar {
+    margin-right: 16px;
+    border: solid 1px black;
+    border-radius: 10px;
+
+    img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+    }
+}
+
+.msg-container {
+    position: relative;
+    margin-bottom: 32px;
+}
+
+header {
+    height: 40px;
+}
+
+
+.main-container {
+    overflow-y: scroll;
+    max-height: 60vh;
+    border-top: 1px solid black;
+}
+
+.message-column {
+    display: flex;
+    flex-direction: column;
+}
+
+
+

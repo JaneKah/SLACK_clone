@@ -4,10 +4,10 @@ import { MatDialog } from '@angular/material/dialog';
 import { DialogAddChannelComponent } from './dialog-add-channel/dialog-add-channel.component';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
-import { SidebarService } from './services/sidebar.service';
 import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { AuthService } from './shared/services/auth.service';
+import { User } from './shared/services/user';
 
 @Component({
   selector: 'app-root',
@@ -19,15 +19,17 @@ export class AppComponent implements OnInit {
   channel: Channel = new Channel();
   channelId = '';
   public channels: Channel[] = [];
+  public users: User[] = [];
   title = "SLACK"
-  db = getFirestore();
-  docRef = doc(collection(this.db, "channels"));
+  // db = getFirestore();
+ //  docRef = doc(collection(this.db, "channels"));
 
-  constructor(private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore, public dialog: MatDialog, public sidebarService: SidebarService) { }
+  constructor(private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getChannels();
-    this.setChannelDoc();
+   // this.setChannelDoc();
+   this.getChatUsersShown();
   }
 
   public getChannels() {
@@ -39,6 +41,15 @@ export class AppComponent implements OnInit {
       });
   }
 
+  public getChatUsersShown() {
+    this.firestore
+    .collection("users")
+    .valueChanges( {idField: 'customIdName'} )
+    .subscribe((changes: any) => {
+      this.users = changes;
+    });
+  }
+/*
   setChannelDoc() {
     this.route.paramMap.subscribe(paramMap => {
       let id = paramMap.get('id');
@@ -48,7 +59,7 @@ export class AppComponent implements OnInit {
       };
       this.channel.channelID = this.channelId;
   });
-  }
+  }*/
 
   openAddChannelDialog(): void {
      this.dialog.open(DialogAddChannelComponent);

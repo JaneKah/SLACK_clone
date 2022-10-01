@@ -24,16 +24,29 @@
       </mat-nav-list>
 
 
-      <mat-expansion-panel class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active"
+      <mat-nav-list>
+        <mat-expansion-panel class="li-direct-msg">
+          <mat-expansion-panel-header>
+            Direct messages
+          </mat-expansion-panel-header>
+          <div *ngFor="let user of users" [routerLink]="['/direct-messages/' + user.uid]"
+            routerLinkActive="router-link-active">
+            <a mat-list-item routerLink>{{ user.displayName }} </a>
+          </div>
+        </mat-expansion-panel>
+      </mat-nav-list>
+        <!--
+      <mat-expansion-panel *ngIf="authService.userData as user" class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active"
         (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
           <mat-panel-title>
             <mat-icon>perm_identity</mat-icon> Direct messages
           </mat-panel-title>
-        </mat-expansion-panel-header>
-        <p>John</p>
+        </mat-expansion-panel-header >
+        <p>{{ user.displayName }} </p>
         <p>Maria</p>
       </mat-expansion-panel>
+      -->
     </ul>
   </mat-drawer>
 

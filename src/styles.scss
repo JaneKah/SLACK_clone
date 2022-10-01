@@ -47,3 +47,8 @@ body {
         bottom: 14px;
     }
 }
+
+.message-column {
+    display: flex;
+    flex-direction: column;
+}

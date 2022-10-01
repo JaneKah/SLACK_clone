@@ -20,7 +20,8 @@ const routes: Routes = [
   { path: 'channels', component: ChannelsComponent, canActivate: [AuthGuard]  },
   { path: 'threads', component: ThreadsComponent, canActivate: [AuthGuard]  },
   { path: 'channels/:id', component: ChannelsComponent, canActivate: [AuthGuard]  },
-  { path: 'direct-messages', component: DirectMessagesComponent, canActivate: [AuthGuard]  }
+  { path: 'direct-messages', component: DirectMessagesComponent, canActivate: [AuthGuard]  },
+  { path: 'direct-messages/:uid', component: DirectMessagesComponent, canActivate: [AuthGuard]  }
 ];
 
 @NgModule({

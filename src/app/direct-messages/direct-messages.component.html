@@ -1,1 +1,28 @@
-<p>direct-messages works!</p>
+<div *ngFor="let user of users">
+    <ng-container *ngIf="user.uid === channelId">
+        <header> {{ user.displayName }} </header>
+    </ng-container>
+</div>
+<div class="main-container">
+    <ng-container>
+        <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
+            <div class="msg-container" *ngIf="authService.userData as user">
+                <div class="avatar">
+                    <img src="/assets/img/panda.png" alt="">
+                </div>
+                <div class="message-column">
+                    <ng-container *ngFor="let user of users">
+                        <div class="user-name" *ngIf="user.uid === channelMessage.userId">
+                            {{ user.displayName }}
+                        </div>
+                    </ng-container>
+                    <p class="timestamp">{{ channelMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+                    <div class="message">
+                        {{ channelMessage.message }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+    <app-inputbox></app-inputbox>
+</div>
