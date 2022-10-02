@@ -40,7 +40,7 @@ export class DirectMessagesComponent implements OnInit {
   public getChannelMessages() {
     if (this.channelId) {
     this.firestore
-      .collection("channelmessages", ref => ref
+      .collection("channelmessages", ref => ref.orderBy("timestamp", "asc")
         .where('channelID', '==', this.channelId)
       )
       .valueChanges( {idField: 'channelID'} )

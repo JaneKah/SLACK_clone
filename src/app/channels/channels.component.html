@@ -1,11 +1,13 @@
-<header> {{ channel.channelName }} </header>
+<header> #{{ channel.channelName }} </header>
 <div class="main-container">
     <ng-container>
         <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
             <div class="msg-container" *ngIf="authService.userData as user">
-                <div class="avatar">
-                    <img src="/assets/img/panda.png" alt="">
-                </div>
+                <ng-container *ngFor="let user of users">
+                    <div class="avatar" *ngIf="user.uid === channelMessage.userId" >
+                        <img src="{{(user.photoURL) ? user.photoURL : '/assets/img/profile.png'}}" alt="">
+                    </div>
+                </ng-container>
                 <div class="message-column">
                     <ng-container *ngFor="let user of users">
                         <div class="user-name" *ngIf="user.uid === channelMessage.userId">

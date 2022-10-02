@@ -6,8 +6,6 @@
 
 .avatar {
     margin-right: 16px;
-    border: solid 1px black;
-    border-radius: 10px;
 
     img {
         height: 50px;
@@ -19,10 +17,13 @@
 .msg-container {
     position: relative;
     margin-bottom: 32px;
+    border-bottom: 1px solid rgb(187, 187, 187);
 }
 
 header {
     height: 40px;
+    font-weight: bold;
+    font-size: large;
 }
 
 

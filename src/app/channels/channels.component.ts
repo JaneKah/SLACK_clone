@@ -23,7 +23,7 @@ export class ChannelsComponent implements OnInit {
   public channelMessages: Channelmessage[] = [];
   // db = getFirestore();
   //docRef = doc(collection(this.db, "channels"));
-  date: Date | undefined;
+ // date: Date | undefined;
   id : string | null = '';
 
   constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
@@ -38,7 +38,8 @@ export class ChannelsComponent implements OnInit {
       
     this.getChannelMessages();
     this.getChannelName(); 
-    this.getMessageTime();
+    this.getChatUsersShown();
+   // this.getMessageTime();
   });
 }
 
@@ -57,23 +58,36 @@ export class ChannelsComponent implements OnInit {
   public getChannelMessages() {
     if (this.channelId) {
     this.firestore
-      .collection("channelmessages", ref => ref
+      .collection("channelmessages", ref => ref.orderBy("timestamp", "asc")
         .where('channelID', '==', this.channelId)
       )
+  
       .valueChanges( {idField: 'channelID'} )
+     
       .subscribe((changes: any) => {
         this.channelMessages = changes;
       });
   }
 }
 
+public getChatUsersShown() {
+  this.firestore
+  .collection("users")
+  .valueChanges( {idField: 'customIdName'} )
+  .subscribe((changes: any) => {
+    this.users = changes;
+  });
+}
+
+}
+/*
 getMessageTime() {
   this.date = new Date(this.channelMessage.timestamp);
 }
-}
 
 
-/*
+
+
 ngOnInit(): void {
   this.route.paramMap.subscribe(paramMap => {
     let id = paramMap.get('id');
