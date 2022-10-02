@@ -1,7 +1,6 @@
 .msg-container {
-    position: relative;
-    margin-bottom: 32px;
-    border-bottom: 1px solid rgb(187, 187, 187);
+    display: flex;
+    flex-direction: row;
 }
 
 .avatar {
@@ -26,7 +25,6 @@ header {
     font-size: large;
 }
 
-
 .main-container {
     overflow-y: scroll;
     max-height: 60vh;
@@ -35,7 +33,10 @@ header {
 
 .message-column {
     display: flex;
-    flex-direction: column;
+
+    .user-name {
+        margin-right: 16px;
+    }
 }
 
 .user-name {

@@ -1,7 +1,6 @@
 .msg-container {
     display: flex;
     flex-direction: row;
-    align-items: center;
 }
 
 .avatar {
@@ -13,12 +12,6 @@
         width: 50px;
         object-fit: contain;
     }
-}
-
-.msg-container {
-    position: relative;
-    margin-bottom: 32px;
-    border-bottom: 1px solid rgb(187, 187, 187);
 }
 
 header {
@@ -34,5 +27,11 @@ header {
     border-top: 1px solid black;
 }
 
+.message-column {
+    display: flex;
 
+    .user-name {
+        margin-right: 16px;
+    }
+}
 

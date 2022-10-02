@@ -87,8 +87,25 @@ td {
 }
 
 .icon-add {
+    border-radius: 10px;
+    margin-left: 48px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+
     &:hover  {
-        background-color: lightgray;
+        opacity: 1;
+    }
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    
+    &:hover  {
+        opacity: 1;
     }
 }
 
@@ -101,6 +118,11 @@ td {
 ::ng-deep .mat-mini-fab.mat-accent,
 ::ng-deep .mat-raised-button.mat-warn {
     background-color: #e91e63;
+}
+
+::ng-deep .mat-expansion-panel-header {
+    font-size: medium;
+    font-weight: bold;
 }
 
 ::ng-deep .mat-raised-button {
@@ -169,4 +191,13 @@ td {
     align-items: center;
 }
 
+.logo-container {
+    font-weight: bold;
+    font-size: large;
+    color: #4A154B;
+}
 
+.threads {
+ font-size: medium;
+ font-weight: bold;
+}

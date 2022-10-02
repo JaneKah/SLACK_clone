@@ -4,21 +4,23 @@
       SLACK
     </div>
     <ul class="menu-items">
-      <li routerLink="/threads" routerLinkActive="router-link-active">
+      <li routerLink="/threads" routerLinkActive="router-link-active" class="threads">
         <mat-icon>fact_check</mat-icon>Threads
       </li>
 
       <mat-nav-list>
         <mat-expansion-panel>
           <mat-expansion-panel-header>
-            Channels
-            <div (click)="openAddChannelDialog()" class="icon-add">
-              <mat-icon>add</mat-icon>
+            <div class="header">
+              Channels
+              <div (click)="openAddChannelDialog()" class="icon-add">
+                <mat-icon>add</mat-icon>
+              </div>
             </div>
           </mat-expansion-panel-header>
           <div *ngFor="let channel of channels" [routerLink]="['/channels/' + channel.customIdName]"
             routerLinkActive="router-link-active">
-            <a mat-list-item routerLink>{{ channel.channelName }}</a>
+            <a mat-list-item routerLink>#{{ channel.channelName }}</a>
           </div>
         </mat-expansion-panel>
       </mat-nav-list>
@@ -35,7 +37,7 @@
           </div>
         </mat-expansion-panel>
       </mat-nav-list>
-        <!--
+      <!--
       <mat-expansion-panel *ngIf="authService.userData as user" class="li-direct-msg" routerLink="/direct-messages" routerLinkActive="router-link-active"
         (opened)="panelOpenState = true" (closed)="panelOpenState = false">
         <mat-expansion-panel-header>
@@ -53,18 +55,18 @@
   <div>
     <mat-toolbar color="primary">
       <div class="header-inner">
-      <mat-toolbar-row>
-      
-        <div class="header-left">
-          <mat-icon *ngIf="authService.userData as user" class="menu-icon" (click)="drawer.toggle()">menu</mat-icon>
-          <span routerLink="/threads" style="cursor: pointer;">SLACK</span>
-        </div>
-        <div routerLink="/dashboard" class="user-pic" *ngIf="authService.userData as user">
-          <img src="{{(user.photoURL) ? user.photoURL : '/assets/profile.png'}}" alt="">
-        </div>
-   
-      </mat-toolbar-row>
-    </div>
+        <mat-toolbar-row>
+
+          <div class="header-left">
+            <mat-icon *ngIf="authService.userData as user" class="menu-icon" (click)="drawer.toggle()">menu</mat-icon>
+            <span routerLink="/threads" style="cursor: pointer;">SLACK</span>
+          </div>
+          <div routerLink="/dashboard" class="user-pic" *ngIf="authService.userData as user">
+            <img src="{{(user.photoURL) ? user.photoURL : '/assets/profile.png'}}" alt="">
+          </div>
+
+        </mat-toolbar-row>
+      </div>
     </mat-toolbar>
 
     <div class="main-container">
