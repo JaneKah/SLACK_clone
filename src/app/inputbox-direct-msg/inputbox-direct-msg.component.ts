@@ -2,20 +2,21 @@ import { Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
-import { Channelmessage } from 'src/models/channelmessage.class';
+import { Directmessage } from 'src/models/directmessage.class';
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/services/user';
 
+
 @Component({
-  selector: 'app-inputbox',
-  templateUrl: './inputbox.component.html',
-  styleUrls: ['./inputbox.component.scss']
+  selector: 'app-inputbox-direct-msg',
+  templateUrl: './inputbox-direct-msg.component.html',
+  styleUrls: ['./inputbox-direct-msg.component.scss']
 })
-export class InputboxComponent implements OnInit {
+export class InputboxDirectMsgComponent implements OnInit {
 
   @ViewChildren('input') inputFields!: QueryList<any>;
 
-  channelMessage = new Channelmessage();
+  directMessage = new Directmessage();
   channel: Channel = new Channel();
   public users: User[] = [];
   /*
@@ -41,27 +42,26 @@ export class InputboxComponent implements OnInit {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
-      this.channelMessage.channelID = this.channelId;
+      this.directMessage.channelID = this.channelId;
     });
-    
     this.route.paramMap.subscribe(paramMap => {
       let id = paramMap.get('uid');
       if (id !== null ) {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
-      this.channelMessage.channelID = this.channelId;
+      this.directMessage.channelID = this.channelId;
     });
-    this.channelMessage.userId = this.userid;
+    this.directMessage.userId = this.userid;
     console.log('current User Id is:', this.userid)
   }
 
   send() {
     this.firestore
-      .collection('channelmessages')
-      .add(this.channelMessage.toJSON())
+      .collection('directmessages')
+      .add(this.directMessage.toJSON())
       .then(() => {
-        this.channelMessage = new Channelmessage();
+        this.directMessage = new Directmessage();
       });
     this.resetInputs();
   }
@@ -73,3 +73,4 @@ export class InputboxComponent implements OnInit {
   }
 
 }
+

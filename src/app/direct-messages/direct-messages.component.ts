@@ -4,8 +4,10 @@ import { Channel } from 'src/models/channel.class';
 import { AuthService } from '../shared/services/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Channelmessage } from 'src/models/channelmessage.class';
+
 import { User } from '../shared/services/user';
 import { Users } from 'src/models/users.class';
+import { Directmessage } from 'src/models/directmessage.class';
 
 @Component({
   selector: 'app-direct-messages',
@@ -16,6 +18,8 @@ export class DirectMessagesComponent implements OnInit {
   channelId : string | null = '';
   channelMessage: Channelmessage = new Channelmessage();
   public channelMessages: Channelmessage[] = [];
+  directMessage: Directmessage = new Directmessage();
+  public directMessages: Directmessage[] = [];
   public users: User[] = [];
   //declare user: User;
   //userFromClass: Users = new Users();
@@ -40,12 +44,12 @@ export class DirectMessagesComponent implements OnInit {
   public getChannelMessages() {
     if (this.channelId) {
     this.firestore
-      .collection("channelmessages", ref => ref.orderBy("timestamp", "asc")
+      .collection("directmessages", ref => ref.orderBy("timestamp", "asc")
         .where('channelID', '==', this.channelId)
       )
       .valueChanges( {idField: 'channelID'} )
       .subscribe((changes: any) => {
-        this.channelMessages = changes;
+        this.directMessages = changes;
       });
   }
 }

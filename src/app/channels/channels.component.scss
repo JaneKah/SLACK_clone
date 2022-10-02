@@ -35,3 +35,12 @@ header {
     }
 }
 
+
+.msg-header {
+    display: flex;
+    
+    .user-name {
+        margin-right: 16px;
+    }
+}
+

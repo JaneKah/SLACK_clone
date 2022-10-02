@@ -43,3 +43,10 @@ header {
     font-weight: bold;
 }
 
+.msg-header {
+    display: flex;
+    .user-name {
+        margin-right: 16px;
+    }
+}
+

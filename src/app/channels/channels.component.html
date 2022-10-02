@@ -4,17 +4,19 @@
         <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
             <div class="msg-container" *ngIf="authService.userData as user">
                 <ng-container *ngFor="let user of users">
-                    <div class="avatar" *ngIf="user.uid === channelMessage.userId" >
+                    <div class="avatar" *ngIf="user.uid === channelMessage.userId">
                         <img src="{{(user.photoURL) ? user.photoURL : '/assets/img/profile.png'}}" alt="">
                     </div>
                 </ng-container>
                 <div class="message-column">
-                    <ng-container *ngFor="let user of users">
-                        <div class="user-name" *ngIf="user.uid === channelMessage.userId">
-                            {{ user.displayName }}
-                        </div>
-                    </ng-container>
-                    <p class="timestamp">{{ channelMessage.timestamp | date : 'dd.MM.y, HH:mm'}} Uhr</p>
+                    <div class="msg-header">
+                        <ng-container *ngFor="let user of users">
+                            <div class="user-name" *ngIf="user.uid === channelMessage.userId">
+                                {{ user.displayName }}
+                            </div>
+                        </ng-container>
+                        <p class="timestamp">{{ channelMessage.timestamp | date : 'dd.MM.y, HH:mm'}}</p>
+                    </div>
                     <div class="message">
                         {{ channelMessage.message }}
                     </div>
@@ -22,5 +24,5 @@
             </div>
         </div>
     </ng-container>
-        <app-inputbox></app-inputbox>
+    <app-inputbox></app-inputbox>
 </div>
