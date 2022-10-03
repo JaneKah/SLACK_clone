@@ -2,8 +2,6 @@
     <h1>Threads</h1>
 </header>
 <div class="main-container">
-
-
     <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
         <mat-card class="card">
             <div class="msg-container" *ngIf="authService.userData as user">
@@ -31,3 +29,7 @@
         </mat-card>
     </div>
 </div>
+<mat-drawer #threadDrawer [opened]="true" position="end" mode="side">
+<app-thread-drawer></app-thread-drawer>
+</mat-drawer>
+  

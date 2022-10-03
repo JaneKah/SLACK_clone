@@ -7,6 +7,7 @@ import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
+// import { ThreadDrawerComponent } from '../thread-drawer/thread-drawer.component';
 
 
 @Component({
@@ -16,13 +17,15 @@ import { AuthService } from '../shared/services/auth.service';
 })
 
 export class ChannelsComponent implements OnInit {
+
+  
   channelId = '';
   public users: User[] = [];
   channel: Channel = new Channel();
   channelMessage: Channelmessage = new Channelmessage();
   public channelMessages: Channelmessage[] = [];
-  // db = getFirestore();
-  //docRef = doc(collection(this.db, "channels"));
+   db = getFirestore();
+ 
  // date: Date | undefined;
   id : string | null = '';
 
@@ -35,13 +38,29 @@ export class ChannelsComponent implements OnInit {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
-      
+      this.channel.customIdName = this.channelId;
     this.getChannelMessages();
     this.getChannelName(); 
     this.getChatUsersShown();
+    //this.setChannelID()
    // this.getMessageTime();
   });
 }
+/*
+setChannelID() {
+ //setDoc(doc(this.db, "channels"), {
+ // channelID: this.channelId
+//});
+
+
+this.firestore
+.collection('channels')
+.doc('channelID')
+.update({channelID: this.channelId})
+.then(() => {
+  console.log('success')
+});
+}*/
 
   public getChannelName() {
     if (this.channelId) {
@@ -54,16 +73,15 @@ export class ChannelsComponent implements OnInit {
       });
     }
   }
+  
 
   public getChannelMessages() {
     if (this.channelId) {
     this.firestore
       .collection("channelmessages", ref => ref.orderBy("timestamp", "asc")
         .where('channelID', '==', this.channelId)
-      )
-  
+      )  
       .valueChanges( {idField: 'channelID'} )
-     
       .subscribe((changes: any) => {
         this.channelMessages = changes;
       });
@@ -79,7 +97,12 @@ public getChatUsersShown() {
   });
 }
 
+openThread() {
+  
 }
+
+}
+
 /*
 getMessageTime() {
   this.date = new Date(this.channelMessage.timestamp);

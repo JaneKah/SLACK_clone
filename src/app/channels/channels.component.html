@@ -20,9 +20,14 @@
                     <div class="message">
                         {{ channelMessage.message }}
                     </div>
+                    <button mat-raised-button (click)="openThread()">Open Thread</button>
                 </div>
             </div>
         </div>
     </ng-container>
     <app-inputbox></app-inputbox>
+    
 </div>
+<mat-drawer #threadDrawer [opened]="true" position="end" mode="side">
+    <app-thread-drawer></app-thread-drawer>
+    </mat-drawer>

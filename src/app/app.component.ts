@@ -14,6 +14,7 @@ import { User } from './shared/services/user';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
+
 export class AppComponent implements OnInit {
   panelOpenState = false;
   channel: Channel = new Channel();
@@ -24,7 +25,7 @@ export class AppComponent implements OnInit {
   // db = getFirestore();
  //  docRef = doc(collection(this.db, "channels"));
 
-  constructor(private route: ActivatedRoute, public authService: AuthService, private firestore: AngularFirestore, public dialog: MatDialog) { }
+  constructor(private route: ActivatedRoute,  public authService: AuthService, private firestore: AngularFirestore, public dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getChannels();
@@ -49,6 +50,12 @@ export class AppComponent implements OnInit {
       this.users = changes;
     });
   }
+
+  setChannelID() {
+
+  }
+
+
 /*
   setChannelDoc() {
     this.route.paramMap.subscribe(paramMap => {

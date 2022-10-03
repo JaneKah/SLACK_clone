@@ -43,15 +43,6 @@ export class InputboxComponent implements OnInit {
       };
       this.channelMessage.channelID = this.channelId;
     });
-    
-    this.route.paramMap.subscribe(paramMap => {
-      let id = paramMap.get('uid');
-      if (id !== null ) {
-        this.channelId = id;
-        console.log('GOT ID:', this.channelId)
-      };
-      this.channelMessage.channelID = this.channelId;
-    });
     this.channelMessage.userId = this.userid;
     console.log('current User Id is:', this.userid)
   }
@@ -63,6 +54,7 @@ export class InputboxComponent implements OnInit {
       .then(() => {
         this.channelMessage = new Channelmessage();
       });
+      this.channel.channelID = this.channelId;
     this.resetInputs();
   }
 

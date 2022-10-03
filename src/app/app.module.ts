@@ -49,7 +49,7 @@ import { ForgotPasswordComponent } from './components/forgot-password/forgot-pas
 import { VerifyEmailComponent } from './components/verify-email/verify-email.component';
 import { AuthService } from "./shared/services/auth.service";
 import { InputboxDirectMsgComponent } from './inputbox-direct-msg/inputbox-direct-msg.component';
-
+import { ThreadDrawerComponent } from './thread-drawer/thread-drawer.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +66,8 @@ import { InputboxDirectMsgComponent } from './inputbox-direct-msg/inputbox-direc
     SignUpComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    InputboxDirectMsgComponent    
+    InputboxDirectMsgComponent,
+    ThreadDrawerComponent
   ],
   imports: [
     BrowserModule,

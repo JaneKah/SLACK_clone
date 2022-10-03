@@ -19,7 +19,6 @@ export class DialogAddChannelComponent implements OnInit {
   constructor(private database: AngularFireDatabase, public dialogRef: MatDialogRef<DialogAddChannelComponent>, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
- 
   }
 
   addChannel() {
