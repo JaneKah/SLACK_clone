@@ -1,27 +1,33 @@
-<header> <h1>Threads</h1> </header>
+<header>
+    <h1>Threads</h1>
+</header>
 <div class="main-container">
-    <ng-container>
-        <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
+
+
+    <div class="msg-main-container" *ngFor="let channelMessage of channelMessages">
+        <mat-card class="card">
             <div class="msg-container" *ngIf="authService.userData as user">
                 <ng-container *ngFor="let user of users">
-                    <div class="avatar" *ngIf="user.uid === channelMessage.userId" >
+                    <div class="avatar" *ngIf="user.uid === channelMessage.userId && userid === channelId ">
                         <img src="{{(user.photoURL) ? user.photoURL : '/assets/img/profile.png'}}" alt="">
                     </div>
                 </ng-container>
                 <div class="message-column">
                     <div class="msg-header">
-                    <ng-container *ngFor="let user of users">
-                        <div class="user-name" *ngIf="user.uid === channelMessage.userId">
-                            {{ user.displayName }}
-                        </div>
-                    </ng-container>
-                    <p class="timestamp">{{ channelMessage.timestamp | date : 'dd.MM.y, HH:mm'}}</p>
-                </div>
-                    <div class="message">
+                        <ng-container *ngFor="let user of users">
+                            <div class="user-name"
+                                *ngIf="user.uid === channelMessage.userId && userid === channelId ">
+                                {{ user.displayName }}
+                            </div>
+                        </ng-container>
+                        <p class="timestamp" *ngIf="user.uid === channelMessage.userId && userid === channelId ">
+                            {{ channelMessage.timestamp | date : 'dd.MM.y, HH:mm'}}</p>
+                    </div>
+                    <div class="message" *ngIf="user.uid === channelMessage.userId && userid === channelId ">
                         {{ channelMessage.message }}
                     </div>
                 </div>
             </div>
-        </div>
-    </ng-container>
+        </mat-card>
+    </div>
 </div>

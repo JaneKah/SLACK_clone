@@ -38,7 +38,7 @@ export class InputboxDirectMsgComponent implements OnInit {
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
       let id = paramMap.get('id');
-      if (id !== null ) {
+      if (id !== null) {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
@@ -46,7 +46,7 @@ export class InputboxDirectMsgComponent implements OnInit {
     });
     this.route.paramMap.subscribe(paramMap => {
       let id = paramMap.get('uid');
-      if (id !== null ) {
+      if (id !== null) {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
       };
@@ -57,12 +57,14 @@ export class InputboxDirectMsgComponent implements OnInit {
   }
 
   send() {
-    this.firestore
-      .collection('directmessages')
-      .add(this.directMessage.toJSON())
-      .then(() => {
-        this.directMessage = new Directmessage();
-      });
+      if (this.directMessage.message !== '') {
+        this.firestore
+          .collection('directmessages')
+          .add(this.directMessage.toJSON())
+          .then(() => {
+            this.directMessage = new Directmessage();
+          });
+      }
     this.resetInputs();
   }
 

@@ -22,7 +22,6 @@ header {
 
 
 .main-container {
-    overflow-y: scroll;
     max-height: 60vh;
     border-top: 1px solid black;
 }
@@ -38,7 +37,7 @@ header {
 
 .msg-header {
     display: flex;
-    
+
     .user-name {
         margin-right: 16px;
     }

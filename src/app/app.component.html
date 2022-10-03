@@ -4,10 +4,11 @@
       SLACK
     </div>
     <ul class="menu-items">
-      <li routerLink="/threads" routerLinkActive="router-link-active" class="threads">
+      <ng-container *ngIf="authService.userData as user" >
+      <li [routerLink]="['/threads/' + user.uid]" routerLinkActive="router-link-active" class="threads">
         <mat-icon>fact_check</mat-icon>Threads
       </li>
-
+    </ng-container>
       <mat-nav-list>
         <mat-expansion-panel>
           <mat-expansion-panel-header>

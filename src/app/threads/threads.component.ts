@@ -24,12 +24,12 @@ export class ThreadsComponent implements OnInit {
   //docRef = doc(collection(this.db, "channels"));
  // date: Date | undefined;
   id : string | null = '';
-
+  userid = this.authService.userData.uid;
   constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
-      let id = paramMap.get('id');
+      let id = paramMap.get('currentuser');
       if (id !== null) {
         this.channelId = id;
         console.log('GOT ID:', this.channelId)
