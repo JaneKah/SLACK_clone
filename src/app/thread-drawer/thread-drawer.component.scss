@@ -1,5 +1,10 @@
 body {
-    overflow: hidden scroll;
+    overflow: hidden;
+}
+
+.main-container {
+    padding-left: 16px;
+    padding-right: 16px;
 }
 
 .logo-container {
@@ -45,4 +50,52 @@ h2 {
 
 .threads-container {
     width: 300px;
+}
+
+.msg-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.avatar {
+    margin-right: 16px;
+    border-radius: 10px;
+
+    img {
+        height: 50px;
+        width: 50px;
+        object-fit: contain;
+    }
+}
+
+header {
+    height: 40px;
+    font-weight: bold;
+    font-size: large;
+}
+
+
+.main-container {
+    overflow-y: auto;
+    max-height: 75vh;
+    border-top: 1px solid black;
+}
+
+.message-column {
+    display: flex;
+
+    .user-name {
+        margin-right: 16px;
+    }
+}
+
+h1 {
+    font-weight: bold;
+}
+
+.msg-header {
+    display: flex;
+    .user-name {
+        margin-right: 16px;
+    }
 }

@@ -26,8 +26,7 @@
         </div>
     </ng-container>
     <app-inputbox></app-inputbox>
-    
 </div>
-<mat-drawer #threadDrawer [opened]="true" position="end" mode="side">
+<mat-drawer #threadDrawer [opened]="isShowing" position="end" mode="side">
     <app-thread-drawer></app-thread-drawer>
-    </mat-drawer>
+</mat-drawer>

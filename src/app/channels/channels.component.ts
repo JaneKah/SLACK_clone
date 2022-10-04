@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
@@ -7,6 +7,7 @@ import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
+import { MatDrawer } from '@angular/material/sidenav';
 // import { ThreadDrawerComponent } from '../thread-drawer/thread-drawer.component';
 
 
@@ -25,11 +26,15 @@ export class ChannelsComponent implements OnInit {
   channelMessage: Channelmessage = new Channelmessage();
   public channelMessages: Channelmessage[] = [];
    db = getFirestore();
+   message = this.channelMessage.message;
  
  // date: Date | undefined;
   id : string | null = '';
-
+  isShowing: boolean = false;
   constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  
+  @ViewChild('drawer') drawer!: MatDrawer;
+
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -46,21 +51,6 @@ export class ChannelsComponent implements OnInit {
    // this.getMessageTime();
   });
 }
-/*
-setChannelID() {
- //setDoc(doc(this.db, "channels"), {
- // channelID: this.channelId
-//});
-
-
-this.firestore
-.collection('channels')
-.doc('channelID')
-.update({channelID: this.channelId})
-.then(() => {
-  console.log('success')
-});
-}*/
 
   public getChannelName() {
     if (this.channelId) {
@@ -98,9 +88,12 @@ public getChatUsersShown() {
 }
 
 openThread() {
-  
+  this.toggleSidenav();
 }
 
+toggleSidenav() {
+  this.isShowing = !this.isShowing;
+}
 }
 
 /*
@@ -122,4 +115,19 @@ ngOnInit(): void {
   this.getChannelMessages(); 
 
 }
+}*/
+/*
+setChannelID() {
+ //setDoc(doc(this.db, "channels"), {
+ // channelID: this.channelId
+//});
+
+
+this.firestore
+.collection('channels')
+.doc('channelID')
+.update({channelID: this.channelId})
+.then(() => {
+  console.log('success')
+});
 }*/

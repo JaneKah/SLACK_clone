@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Channel } from 'src/models/channel.class';
@@ -7,6 +7,7 @@ import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
+import { MatDrawer } from '@angular/material/sidenav';
 
 @Component({
   selector: 'app-threads',
@@ -25,6 +26,8 @@ export class ThreadsComponent implements OnInit {
  // date: Date | undefined;
   id : string | null = '';
   userid = this.authService.userData.uid;
+  isShowing: boolean = false;
+
   constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
@@ -58,6 +61,14 @@ public getChatUsersShown() {
   .subscribe((changes: any) => {
     this.users = changes;
   });
+}
+
+openThread() {
+  this.toggleSidenav();
+}
+
+toggleSidenav() {
+  this.isShowing = !this.isShowing;
 }
 
 }
