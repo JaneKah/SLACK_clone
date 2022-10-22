@@ -7,7 +7,8 @@ import { collection, doc, setDoc, getFirestore } from "firebase/firestore";
 import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
-import { MatDrawer } from '@angular/material/sidenav';
+import { ThreadService } from '../services/thread.service';
+
 
 @Component({
   selector: 'app-threads',
@@ -21,14 +22,14 @@ export class ThreadsComponent implements OnInit {
   channel: Channel = new Channel();
   channelMessage: Channelmessage = new Channelmessage();
   public channelMessages: Channelmessage[] = [];
-  // db = getFirestore();
-  //docRef = doc(collection(this.db, "channels"));
+  db = getFirestore();
+  docRef = doc(collection(this.db, "channels"));
  // date: Date | undefined;
   id : string | null = '';
   userid = this.authService.userData.uid;
-  isShowing: boolean = false;
+  isThreadOpened: boolean = false;
 
-  constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  constructor(public authService: AuthService, public threadService: ThreadService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -61,14 +62,6 @@ public getChatUsersShown() {
   .subscribe((changes: any) => {
     this.users = changes;
   });
-}
-
-openThread() {
-  this.toggleSidenav();
-}
-
-toggleSidenav() {
-  this.isShowing = !this.isShowing;
 }
 
 }

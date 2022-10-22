@@ -5,6 +5,8 @@ import { Channel } from 'src/models/channel.class';
 import { Channelmessage } from 'src/models/channelmessage.class';
 import { AuthService } from '../shared/services/auth.service';
 import { User } from '../shared/services/user';
+import { collection, doc, setDoc, getFirestore } from "firebase/firestore"; 
+import { AngularFireDatabase } from '@angular/fire/compat/database';
 
 @Component({
   selector: 'app-inputbox',
@@ -32,7 +34,10 @@ export class InputboxComponent implements OnInit {
   // public uid: string | null = '';
   userFromInterface = {} as User;
   userid = this.authService.userData.uid;
-  constructor(public authService: AuthService, private firestore: AngularFirestore, private route: ActivatedRoute) { }
+  db = getFirestore();
+  docRef = doc(collection(this.db, "channels"));
+
+  constructor(public authService: AuthService, private database: AngularFireDatabase, private firestore: AngularFirestore, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -51,17 +56,28 @@ export class InputboxComponent implements OnInit {
     this.firestore
       .collection('channelmessages')
       .add(this.channelMessage.toJSON())
-      .then(() => {
+      .then((docRef) => {
+        console.log('Message ID:', docRef.id) 
         this.channelMessage = new Channelmessage();
       });
       this.channel.channelID = this.channelId;
+     
     this.resetInputs();
   }
 
+  
 
   private resetInputs() {
     let arrayOfInputs = this.inputFields.toArray();
     arrayOfInputs.forEach((input) => (input.nativeElement.value = ''));
   }
+/*
+  async setMessageId(messageId: string) {
+    const loadMessage = doc(
+      this.firebase,
+      `channelmessages/${messageId}`
+    );
+    await updateDoc(loadMessage, { message: messageId });
+  }*/
 
 }

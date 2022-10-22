@@ -24,13 +24,13 @@
                     <div class="message" *ngIf="user.uid === channelMessage.userId && userid === channelId ">
                         {{ channelMessage.message }}
                     </div>
-                    <button mat-raised-button (click)="openThread()">Open Thread</button>
+                    <button mat-raised-button (click)="threadService.openThread()">Open Thread</button>
                 </div>
             </div>
         </mat-card>
     </div>
 </div>
-<mat-drawer #threadDrawer [opened]="isShowing" position="end" mode="side">
+<mat-drawer #threadDrawer [opened]="isThreadOpened" position="end" mode="side">
 <app-thread-drawer></app-thread-drawer>
 </mat-drawer>
   

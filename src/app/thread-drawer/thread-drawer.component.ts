@@ -8,6 +8,8 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
 import { MatDrawer } from '@angular/material/sidenav';
+import { ThreadService } from '../services/thread.service';
+
 
 @Component({
   selector: 'app-thread-drawer',
@@ -27,7 +29,7 @@ export class ThreadDrawerComponent implements OnInit {
  // date: Date | undefined;
   id : string | null = '';
   userid = this.authService.userData.uid;
-  constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  constructor(public authService: AuthService, public threadService: ThreadService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(paramMap => {
@@ -37,13 +39,14 @@ export class ThreadDrawerComponent implements OnInit {
         console.log('GOT ID:', this.channelId)
       };
     this.getChannelMessages();
-    this.getChannelName(); 
+  //  this.getChannelName(); 
     this.getChatUsersShown();
     //this.setChannelID()
    // this.getMessageTime();
   });
 }
 
+/*
   public getChannelName() {
     this.firestore
       .collection("channels")
@@ -53,7 +56,7 @@ export class ThreadDrawerComponent implements OnInit {
         this.channel = new Channel(channel);
       });
   }
-  
+  */
 
   public getChannelMessages() {
     this.firestore

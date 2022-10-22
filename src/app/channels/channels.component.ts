@@ -8,7 +8,7 @@ import { AngularFireDatabase } from '@angular/fire/compat/database';
 import { User } from '../shared/services/user';
 import { AuthService } from '../shared/services/auth.service';
 import { MatDrawer } from '@angular/material/sidenav';
-// import { ThreadDrawerComponent } from '../thread-drawer/thread-drawer.component';
+import { ThreadService } from '../services/thread.service';
 
 
 @Component({
@@ -30,8 +30,8 @@ export class ChannelsComponent implements OnInit {
  
  // date: Date | undefined;
   id : string | null = '';
-  isShowing: boolean = false;
-  constructor(public authService: AuthService, private database: AngularFireDatabase, private route: ActivatedRoute, private firestore: AngularFirestore) { }
+  isThreadOpened: boolean = false;
+  constructor(public authService: AuthService, private database: AngularFireDatabase, public threadService: ThreadService, private route: ActivatedRoute, private firestore: AngularFirestore) { }
   
   @ViewChild('drawer') drawer!: MatDrawer;
 
@@ -87,13 +87,6 @@ public getChatUsersShown() {
   });
 }
 
-openThread() {
-  this.toggleSidenav();
-}
-
-toggleSidenav() {
-  this.isShowing = !this.isShowing;
-}
 }
 
 /*

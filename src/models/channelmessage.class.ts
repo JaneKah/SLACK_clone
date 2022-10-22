@@ -4,7 +4,7 @@ export class Channelmessage {
   userId: string;
   channelID?: string; 
   customIdName?: string;
-
+  messageId?: string;
 
   constructor(obj?: any) {
     this.message = obj ? obj.message : '';
@@ -12,7 +12,7 @@ export class Channelmessage {
     this.userId = obj ? obj.userId : ''
     this.channelID = obj ? obj.channelID : ''
     this.customIdName = obj ? obj.customIdName : '';
-
+    this.messageId = obj ? obj.messageId : '';
   }
 
   public toJSON(): any {
@@ -21,7 +21,8 @@ export class Channelmessage {
       timestamp: this.timestamp,
       userId: this.userId,
       channelID: this.channelID,
-      customIdName: this.customIdName
+      customIdName: this.customIdName,
+      messageId: this.messageId
     }
   }
 }
